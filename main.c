@@ -54,9 +54,15 @@ int main() {
     int * ret = SelectRecordsByDuration(t1,t2);
     ShowRecords(ret);*/
 
-    float d1 = 5,d2 = 10;
+   /* float d1 = 5,d2 = 10;
     int * ret = SelectRecordsByDistance(d1,d2);
-    ShowRecords(ret);
+    ShowRecords(ret);*/
+
+   /*int *ret = SelectRecordsByCate(6);
+    ShowRecords(ret);*/
+
+
+    SelectRecords();
 
 
     return 0;

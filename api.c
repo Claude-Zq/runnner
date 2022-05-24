@@ -77,6 +77,27 @@ int* SelectRecordsByDistance(float a,float b){
     return ret;
 }
 
+
+int* SelectRecordsByCate(int cateID){
+    int *ret =(int*)malloc(sizeof(int));
+    *ret = 0;
+    for (int i = 0;i<recordsArray.size;i++) {
+        //满足条件，记录索引
+        if (cateID == recordsArray.records[i].category) {
+            ret[0]++;
+            //重新分配内存
+            ret = (int *) realloc(ret, ret[0] + 1);
+            if (ret == NULL) {
+                printf("SelectRecordsByDate中内存申请失败");
+                return ret;
+            }
+            ret[ret[0]] = i;//存储满足条件的记录在recordsArray中的索引
+        }
+    }
+    return ret;
+}
+
+
 void ShowRecords(const int *ret){
     if (ret[0]==0) {
         printf("无满足条件的记录\n");
@@ -96,4 +117,127 @@ void ShowRecords(const int *ret){
         }
     }
     free(ret);//释放堆区开辟的内存
+}
+
+
+void SelectRecords() {
+    printf("1.按日期查找\n2.按时长查找\n3.按距离查找\n4.按分类查找\n0.返回上一级\n请输入您的选择:");
+    int select,ignore;
+    while (scanf("%d",&select)!= 1){
+        printf("输入错误请重新输入:");
+        while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
+    }
+    while ((ignore = getchar()) != '\n');//清空输入缓冲区
+
+    int * ret;
+    switch (select)
+    {
+        case 0://返回上一级
+            printf("已返回\n");
+            return;
+        case 1://按日期查找
+        {
+            DATE start,end;
+            printf("请输入起始日期(yyyy/mm/dd):");
+            while(1) {
+                while (scanf("%d/%hd/%hd", &start.year, &start.month, &start.day) != 3) {
+                    printf("日期格式有误，请重新输入:");
+                    while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
+                }
+                if (IsLegalDate(&start)) break;
+                printf("输入日期不合法，请重新输入:");
+            }
+            while ((ignore = getchar()) != '\n');//清空输入缓冲区
+
+            printf("请输入终止日期(yyyy/mm/dd):");
+            while(1){
+                while (scanf("%d/%hd/%hd",&end.year,&end.month,&end.day)!= 3){
+                    printf("日期格式有误，请重新输入:");
+                    while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
+                }
+                if (IsLegalDate(&end)) break;
+                printf("输入日期不合法，请重新输入:");
+            }
+            while ((ignore = getchar()) != '\n');//清空输入缓冲区
+
+            if (DateCmp(&start,&end)==-1){
+                printf("起始时间不得大于终止时间!\n");
+                return;
+            }
+            ret = SelectRecordsByDate(&start,&end);
+            break;
+        }
+
+        case 2://按时长查找
+        {
+            float minT,maxT;
+            printf("请输入最短时长(单位:h):");
+            while (scanf("%f", &minT) != 1) {
+                printf("输入有误，请重新输入:");
+                while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
+            }
+            while ((ignore = getchar()) != '\n');//清空输入缓冲区
+
+            printf("请输入最长时长(单位:h):");
+            while (scanf("%f", &maxT) != 1) {
+                printf("输入有误，请重新输入:");
+                while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
+            }
+            while ((ignore = getchar()) != '\n');//清空输入缓冲区
+
+            if (minT>maxT){
+                printf("最短时长不得大于最大时长!\n");
+                return;
+            }
+            ret = SelectRecordsByDuration(minT,maxT);
+            break;
+        }
+
+        case 3://按距离查找
+        {
+            float minD,maxD;
+            printf("请输入最短距离(单位:km):");
+            while (scanf("%f", &minD) != 1) {
+                printf("输入有误，请重新输入:");
+                while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
+            }
+            while ((ignore = getchar()) != '\n');//清空输入缓冲区
+
+            printf("请输入最长距离(单位:km):");
+            while (scanf("%f", &maxD) != 1) {
+                printf("输入有误，请重新输入:");
+                while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
+            }
+            while ((ignore = getchar()) != '\n');//清空输入缓冲区
+
+            if (minD>maxD){
+                printf("最短距离不得大于最大距离!\n");
+                return;
+            }
+            ret = SelectRecordsByDistance(minD,maxD);
+            break;
+        }
+        case 4://按分类查找
+        {
+            short cateID;
+
+            printf("1.EasyRunning\n2.LongSlowDistance\n3.MarathonPaceRunning\n4.ThresholdRunning\n5.IntervalTraining\n");
+            printf("请输入您想查找的类别:");
+            while (scanf("%hd", &cateID) != 1) {
+                printf("输入有误，请重新输入:");
+                while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
+            }
+            while ((ignore = getchar()) != '\n');//清空输入缓冲区
+
+            if (cateID<1||cateID>5){
+                printf("无该类别!\n");
+                return;
+            }
+            ret = SelectRecordsByCate(cateID);
+            break;
+        }
+        default:
+            printf("无该选项！");
+    }
+    ShowRecords(ret);
 }

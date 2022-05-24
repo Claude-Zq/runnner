@@ -29,5 +29,14 @@ int* SelectRecordsByDuration(float a,float b);
 //函数返回值：一个数组ret(int *)，ret[0]记录结果个数,ret[1]开始记录recordsArray.records中复合条件的索引(用后记得free)
 int* SelectRecordsByDistance(float a,float b);
 
+
+//按跑步类别查找对应记录
+//函数参数: 分类编号
+//函数返回值：一个数组ret(int *)，ret[0]记录结果个数,ret[1]开始记录recordsArray.records中复合条件的索引(用后记得free)
+int* SelectRecordsByCate(int cateID);
+
 //展示查找到的记录
 void ShowRecords(const int *ret);
+
+//查找记录(汇总)
+void SelectRecords();
