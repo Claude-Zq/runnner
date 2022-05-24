@@ -24,6 +24,10 @@ int* SelectRecordsByDate(DATE*a,DATE*b);
 //函数返回值：一个数组ret(int *)，ret[0]记录结果个数,ret[1]开始记录recordsArray.records中复合条件的索引(用后记得free)
 int* SelectRecordsByDuration(float a,float b);
 
+//按距离区间查找对应记录
+//函数参数: 最短时长a 最长时长b
+//函数返回值：一个数组ret(int *)，ret[0]记录结果个数,ret[1]开始记录recordsArray.records中复合条件的索引(用后记得free)
+int* SelectRecordsByDistance(float a,float b);
 
 //展示查找到的记录
 void ShowRecords(const int *ret);

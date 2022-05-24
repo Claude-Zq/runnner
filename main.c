@@ -50,8 +50,12 @@ int main() {
     int * ret = SelectRecordsByDate(&d1,&d2);
     ShowRecords(ret);*/
 
-   float t1 = (float)0.5,t2 = 1;
+  /* float t1 = (float)0.5,t2 = 1;
     int * ret = SelectRecordsByDuration(t1,t2);
+    ShowRecords(ret);*/
+
+    float d1 = 5,d2 = 10;
+    int * ret = SelectRecordsByDistance(d1,d2);
     ShowRecords(ret);
 
 
