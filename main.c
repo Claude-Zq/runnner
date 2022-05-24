@@ -68,8 +68,9 @@ int main() {
 
     /*ShowMonthlyMileage();*/
 
-    ShowWeeklyMileage();
+    /*ShowWeeklyMileage();*/
 
+    ShowAllRecords(1);
 
     return 0;
 }

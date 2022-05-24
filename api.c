@@ -348,3 +348,40 @@ void ShowWeeklyMileage(){
 
 
 }
+
+
+//按距离顺序输出所有跑步记录
+void ShowAllRecords(int isReverse){
+    if (recordsArray.size == 0){
+        printf("无任何记录！\n");
+        return;
+    }
+
+    printf("       ===查询结果如下===\n");
+    printf("   %s    \t %s \t%s\t   %s\n","日期","时长","距离","类别");
+    //将记录升序排列
+    SortRecordsArrayByDistance();
+    if (isReverse == 1){
+        for (int i = recordsArray.size-1;i>=0;i--){
+            printf("%04d-%02d-%02d\t%4.2f\t%4.2f\t%d\n",
+                   recordsArray.records[i].date.year,
+                   recordsArray.records[i].date.month,
+                   recordsArray.records[i].date.day,
+                   recordsArray.records[i].duration,
+                   recordsArray.records[i].distance,
+                   recordsArray.records[i].category);
+        }
+    }
+    else{
+        for (int i = 0;i<recordsArray.size;i++){
+            printf("%04d-%02d-%02d\t%4.2f\t%4.2f\t%d\n",
+                   recordsArray.records[i].date.year,
+                   recordsArray.records[i].date.month,
+                   recordsArray.records[i].date.day,
+                   recordsArray.records[i].duration,
+                   recordsArray.records[i].distance,
+                   recordsArray.records[i].category);
+        }
+    }
+
+}

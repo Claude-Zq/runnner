@@ -48,6 +48,11 @@ void ShowAnnualMileage();
 //展示各月跑量
 void ShowMonthlyMileage();
 
-
 //展示周跑量
 void ShowWeeklyMileage();
+
+
+//按距离顺序输出所有跑步记录
+//isReverse = 1 逆序输出
+//isReverse = 0 顺序输出
+void ShowAllRecords(int isReverse);
