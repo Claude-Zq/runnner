@@ -1,9 +1,12 @@
 #include <stdio.h>
 #include"fileManager.h"
+#include "api.h"
 
 int main() {
 
     InitRecordsArray();
+
+    //测试fileManger中的所有函数
 /*    //输出所有记录
     for(int i = 0;i<recordsArray.size;i++){
         printf("%04d-%02d-%02d\t%4.2f\t%4.2f\t%d\n",
@@ -40,5 +43,6 @@ int main() {
 //    }
 
 
+    ShowMenu();
     return 0;
 }
