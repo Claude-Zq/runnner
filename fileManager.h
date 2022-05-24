@@ -12,6 +12,9 @@ struct recordsA{
     RECORD * records;
     int size,cap;
 }recordsArray;
+//在GCC编译环境下，全局结构体变量可以直接定义在头文件中，并且和我们想要的一样，所有包含该
+//头文件的文件共用这一个变量
+//在windows中的VS编译环境下，把全局结构体变量定义在头文件中会报错，提示重复定义变量
 
 //将文件中的记录导入到recordsArray中
 void InitRecordsArray();
@@ -29,3 +32,7 @@ void SortRecordsArrayByDistance();
 
 //按时间对记录排序(升序)
 void SortRecordsArrayByDate();
+
+
+//添加记录
+void AddRecordToArray(RECORD *rcd);

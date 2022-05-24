@@ -64,7 +64,7 @@ int SaveRecordsArray(){
 //扩容失败: 0
 int DoubleArrayCap(){
     //开辟新的内存空间
-    RECORD* newRecords =(RECORD*) realloc(recordsArray.records,recordsArray.cap*2*sizeof(RECORD)); //realloc会自动free原来的空基恩
+    RECORD* newRecords =(RECORD*) realloc(recordsArray.records,recordsArray.cap*2*sizeof(RECORD)); //realloc会自动free原来的空间
     if (newRecords == NULL){ //内存不足时不会释放原来空间
         printf("recordsArray扩容失败\n");
         return 0;
@@ -108,4 +108,15 @@ void SortRecordsArrayByDate(){
             recordsArray.records[i] = temp;
         }
     }
+}
+
+
+//添加记录
+void AddRecordToArray(RECORD *rcd){
+    //recordsArray满了，扩容
+    if (recordsArray.size == recordsArray.cap) DoubleArrayCap();
+
+    recordsArray.records[recordsArray.size] = *rcd;
+    recordsArray.size++;
+
 }
