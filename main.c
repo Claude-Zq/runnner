@@ -4,105 +4,47 @@
 
 int main() {
 
-    InitRecordsArray();
+    InitRecordsArray(); //将文件中的数据加载到内存中
+    while (1){
+        ShowMenu();
+        printf("请输入您的选择:");
 
-    //测试fileManger中的所有函数
-/*    //输出所有记录
-    for(int i = 0;i<recordsArray.size;i++){
-        printf("%04d-%02d-%02d\t%4.2f\t%4.2f\t%d\n",
-               recordsArray.records[i].date.year,
-               recordsArray.records[i].date.month,
-               recordsArray.records[i].date.day,
-               recordsArray.records[i].duration,
-               recordsArray.records[i].distance,
-               recordsArray.records[i].category);
-    }*/
-   /* SortRecordsArrayByDistance();
-    //输出所有记录
-    for(int i = 0;i<recordsArray.size;i++){
-        printf("%04d-%02d-%02d\t%4.2f\t%4.2f\t%d\n",
-               recordsArray.records[i].date.year,
-               recordsArray.records[i].date.month,
-               recordsArray.records[i].date.day,
-               recordsArray.records[i].duration,
-               recordsArray.records[i].distance,
-               recordsArray.records[i].category);
+        int select,ignore;
+        while (scanf("%d",&select)!= 1){
+            printf("输入错误请重新输入:");
+            while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
+        }
+        while ((ignore = getchar()) != '\n');//清空输入缓冲区
+
+        switch (select)
+        {
+            case 0://退出程序
+                printf("欢迎下次使用\n");
+                return 0;
+            case 1://添加记录
+                printf("添加记录");
+                break;
+            case 2://删除记录
+                printf("删除记录");
+                break;
+            case 3:
+                SelectRecords();
+                printf("按任意键继续");
+                getchar();
+                system("clear");
+                break;
+            case 4:
+                printf("分析记录");
+                break;
+
+            default:
+                printf("无该选项！");
+                getchar();//按任意键后清屏
+                system("clear");//清屏windows用cls
+                break;
+        }
+
     }
-    */
-
-//    SortRecordsArrayByDate();
-//    //输出所有记录
-//    for(int i = 0;i<recordsArray.size;i++){
-//        printf("%04d-%02d-%02d\t%4.2f\t%4.2f\t%d\n",
-//               recordsArray.records[i].date.year,
-//               recordsArray.records[i].date.month,
-//               recordsArray.records[i].date.day,
-//               recordsArray.records[i].duration,
-//               recordsArray.records[i].distance,
-//               recordsArray.records[i].category);
-//    }
 
 
-    /*ShowMenu();*/
-
-
-    /*DATE d1 = {2022,4,4},d2 = {2022,5,5};
-    int * ret = SelectRecordsByDate(&d1,&d2);
-    ShowRecords(ret);*/
-
-  /* float t1 = (float)0.5,t2 = 1;
-    int * ret = SelectRecordsByDuration(t1,t2);
-    ShowRecords(ret);*/
-
-   /* float d1 = 5,d2 = 10;
-    int * ret = SelectRecordsByDistance(d1,d2);
-    ShowRecords(ret);*/
-
-   /*int *ret = SelectRecordsByCate(6);
-    ShowRecords(ret);*/
-
-
-    /*SelectRecords();*/
-
-    /*ShowAnnualMileage();*/
-
-    /*ShowMonthlyMileage();*/
-
-    /*ShowWeeklyMileage();*/
-
-    /*ShowAllRecords(1);*/
-
-   /* ShowWeeklyMileageComposition();*/
-
-   //对添加记录功能的测试
-  /* RECORD  r = {
-           {2024,10,10},
-           3,
-           66,
-           2,
-   };
-
-    AddRecordToArray(&r);
-    printf("%04d-%02d-%02d\t%4.2f\t%4.2f\t%d\n",
-           recordsArray.records[recordsArray.size-1].date.year,
-           recordsArray.records[recordsArray.size-1].date.month,
-           recordsArray.records[recordsArray.size-1].date.day,
-           recordsArray.records[recordsArray.size-1].duration,
-           recordsArray.records[recordsArray.size-1].distance,
-           recordsArray.records[recordsArray.size-1].category);*/
-
-  /*AddRecord();*/
-
-  DATE d1 = {
-          2022,
-          3,
-          9};
-
-    if (DeleteRecordByDate(&d1)==1){
-        printf("删除成功");
-    }
-    else{
-        printf("删除失败");
-    }
-    return 0;
 }
