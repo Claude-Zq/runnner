@@ -66,9 +66,9 @@ int main() {
 
     /*ShowAnnualMileage();*/
 
-    ShowMonthlyMileage();
+    /*ShowMonthlyMileage();*/
 
-
+    ShowWeeklyMileage();
 
 
     return 0;

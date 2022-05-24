@@ -47,3 +47,7 @@ void ShowAnnualMileage();
 
 //展示各月跑量
 void ShowMonthlyMileage();
+
+
+//展示周跑量
+void ShowWeeklyMileage();

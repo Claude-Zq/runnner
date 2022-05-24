@@ -311,3 +311,40 @@ void ShowMonthlyMileage(){
     }
 
 }
+
+
+void ShowWeeklyMileage(){
+    //记录为空
+    if (recordsArray.size == 0){
+        printf("记录为空");
+        return;
+    }
+    SortRecordsArrayByDate();//确保记录的顺序是升序排列的
+
+    float sumOfMileage = 0; //周跑量
+    int weekId = 1;
+    DATE LastDate =  recordsArray.records[0].date;
+    for(int i = 0;i< recordsArray.size;i++){
+        //和上一个日期同周，继续向sumOfMileage中叠加
+        if(InSameWeek(&LastDate,&recordsArray.records[i].date)){
+            sumOfMileage  += recordsArray.records[i].distance;
+        }
+            //和上一个日期不同周
+        else{
+            //输出旧月的跑量
+            printf("%03d周:",weekId++);
+            for(int j = 3*(int)(sumOfMileage+0.5);j>0;j--) printf("#"); //输出进度条
+            printf(" %.2fkm\n",sumOfMileage );
+            sumOfMileage  = recordsArray.records[i].distance;//开始计算新月的跑量
+        }
+        LastDate = recordsArray.records[i].date;
+    }
+    //最后一周没有输出
+    if(fabsf(sumOfMileage-0)>EPS){
+        printf("%03d周:",weekId);
+        for(int j = (int)(sumOfMileage+0.5);j>0;j--) printf("#"); //输出进度条
+        printf(" %.2fkm\n",sumOfMileage );
+    }
+
+
+}
