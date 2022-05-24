@@ -4,6 +4,7 @@
 
 #pragma once
 #include "date.h"
+#define NUMOFCATE 5
 
 typedef enum cate{
     EasyRunning = 1,LongSlowDistance,MarathonPaceRunning,ThresholdRunning,IntervalTraining

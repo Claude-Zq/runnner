@@ -385,3 +385,54 @@ void ShowAllRecords(int isReverse){
     }
 
 }
+
+
+//展示周跑量的组成
+void ShowWeeklyMileageComposition(){
+    //记录为空
+    if (recordsArray.size == 0){
+        printf("记录为空\n");
+        return;
+    }
+    SortRecordsArrayByDate();//确保记录的顺序是升序排列的
+
+    //记录每周各类别的跑量
+    float sumOfMileage[5] = {0,0,0,0,0} ;
+    int weekId = 1;
+
+    DATE LastDate =  recordsArray.records[0].date;
+    for(int i = 0;i< recordsArray.size;i++){
+        //和上一个日期同周，继续向sumOfMileage中叠加
+        if(InSameWeek(&LastDate,&recordsArray.records[i].date)){
+            sumOfMileage[recordsArray.records[i].category-1] += recordsArray.records[i].distance;
+        }
+            //和上一个日期不同周
+        else{
+            //输出旧周的跑量组成
+            printf("%03d周:\n",weekId++);
+
+            //计算本周总跑量
+            float sum = 0;
+            for (int j = 0;j<NUMOFCATE;j++) sum += sumOfMileage[j];
+
+            for(int j = 0;j<NUMOFCATE;j++){
+                printf("[%c]  %%%06.2f:  ",cateIdToString[j+1][0],sumOfMileage[j]/sum*100);
+                for (int k = 0;k<(int)sumOfMileage[j]*2;k++) printf("#");
+                printf("\n");
+            }
+            sumOfMileage[recordsArray.records[i].category-1]  = recordsArray.records[i].distance;//开始计算新周的跑量
+        }
+        LastDate = recordsArray.records[i].date;
+    }
+    //输出最后一周
+    printf("%03d周:\n",weekId++);
+    //计算本周总跑量
+    float sum = 0;
+    for (int j = 0;j<NUMOFCATE;j++) sum += sumOfMileage[j];
+
+    for(int j = 0;j<NUMOFCATE;j++){
+        printf("[%c]  %%%06.2f:  ",cateIdToString[j+1][0],sumOfMileage[j]/sum*100);
+        for (int k = 0;k<(int)sumOfMileage[j]*2;k++) printf("#");
+        printf("\n");
+    }
+}

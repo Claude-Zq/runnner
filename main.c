@@ -70,7 +70,9 @@ int main() {
 
     /*ShowWeeklyMileage();*/
 
-    ShowAllRecords(1);
+    /*ShowAllRecords(1);*/
+
+    ShowWeeklyMileageComposition();
 
     return 0;
 }

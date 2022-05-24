@@ -10,6 +10,8 @@
 #include <math.h>
 #define EPS 1e-8        //浮点误差
 
+extern const char* cateIdToString[]; //用到record.c中定义的全局变量，必须重新声明一遍
+
 //展示菜单
 void ShowMenu();
 
@@ -56,3 +58,6 @@ void ShowWeeklyMileage();
 //isReverse = 1 逆序输出
 //isReverse = 0 顺序输出
 void ShowAllRecords(int isReverse);
+
+//展示周跑量的组成
+void ShowWeeklyMileageComposition();
