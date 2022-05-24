@@ -43,6 +43,12 @@ int main() {
 //    }
 
 
-    ShowMenu();
+    /*ShowMenu();*/
+    DATE d1 = {2022,4,4},d2 = {2022,5,5};
+
+    int * ret = SelectRecordsByDate(&d1,&d2);
+    ShowRecords(ret);
+
+
     return 0;
 }
