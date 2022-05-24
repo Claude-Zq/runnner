@@ -62,7 +62,11 @@ int main() {
     ShowRecords(ret);*/
 
 
-    SelectRecords();
+    /*SelectRecords();*/
+
+    ShowAnnualMileage();
+
+
 
 
     return 0;

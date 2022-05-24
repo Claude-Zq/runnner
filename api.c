@@ -241,3 +241,38 @@ void SelectRecords() {
     }
     ShowRecords(ret);
 }
+
+
+void ShowAnnualMileage(){
+    //记录为空
+    if (recordsArray.size == 0){
+        printf("记录为空");
+        return;
+    }
+    SortRecordsArrayByDate();//确保记录的顺序是升序排列的
+
+    float sumOfMileage = 0; //年跑量
+    DATE LastDate =  recordsArray.records[0].date;
+    for(int i = 0;i< recordsArray.size;i++){
+        //和上一个日期同年，继续向sumOfMileage中叠加
+        if(InSameYear(&LastDate,&recordsArray.records[i].date)){
+            sumOfMileage  += recordsArray.records[i].distance;
+        }
+            //和上一个日期不同年
+        else{
+            //输出旧年的跑量
+            printf("%04d年:",LastDate.year);
+            for(int j = (int)(0.5*(sumOfMileage+0.5));j>0;j--) printf("#"); //输出进度条
+            printf(" %.2fkm\n",sumOfMileage );
+            sumOfMileage  = recordsArray.records[i].distance;//开始计算新一年的跑量
+        }
+        LastDate = recordsArray.records[i].date;
+    }
+    //最后一年没有输出
+    if(fabsf(sumOfMileage-0)>EPS){
+        printf("%04d年:",LastDate.year);
+        for(int j = (int)(0.5*(sumOfMileage+0.5));j>0;j--) printf("#"); //输出进度条
+        printf(" %.2fkm\n",sumOfMileage );
+    }
+
+}
