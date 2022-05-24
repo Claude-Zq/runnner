@@ -41,7 +41,9 @@ void ShowRecords(const int *ret);
 //查找记录(汇总)
 void SelectRecords();
 
-
 //展示各年跑量
 void ShowAnnualMileage();
 
+
+//展示各月跑量
+void ShowMonthlyMileage();

@@ -276,3 +276,38 @@ void ShowAnnualMileage(){
     }
 
 }
+
+
+void ShowMonthlyMileage(){
+    //记录为空
+    if (recordsArray.size == 0){
+        printf("记录为空");
+        return;
+    }
+    SortRecordsArrayByDate();//确保记录的顺序是升序排列的
+
+    float sumOfMileage = 0; //月跑量
+    DATE LastDate =  recordsArray.records[0].date;
+    for(int i = 0;i< recordsArray.size;i++){
+        //和上一个日期同月，继续向sumOfMileage中叠加
+        if(InSameMonth(&LastDate,&recordsArray.records[i].date)){
+            sumOfMileage  += recordsArray.records[i].distance;
+        }
+            //和上一个日期不同月
+        else{
+            //输出旧月的跑量
+            printf("%04d-%02d:",LastDate.year,LastDate.month);
+            for(int j = (int)(sumOfMileage+0.5);j>0;j--) printf("#"); //输出进度条
+            printf(" %.2fkm\n",sumOfMileage );
+            sumOfMileage  = recordsArray.records[i].distance;//开始计算新月的跑量
+        }
+        LastDate = recordsArray.records[i].date;
+    }
+    //最后一月没有输出
+    if(fabsf(sumOfMileage-0)>EPS){
+        printf("%04d-%02d:",LastDate.year,LastDate.month);
+        for(int j = (int)(sumOfMileage+0.5);j>0;j--) printf("#"); //输出进度条
+        printf(" %.2fkm\n",sumOfMileage );
+    }
+
+}

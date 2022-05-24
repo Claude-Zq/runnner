@@ -64,7 +64,9 @@ int main() {
 
     /*SelectRecords();*/
 
-    ShowAnnualMileage();
+    /*ShowAnnualMileage();*/
+
+    ShowMonthlyMileage();
 
 
 
