@@ -38,6 +38,24 @@ int* SelectRecordsByDate(DATE*a,DATE*b){
 }
 
 
+int* SelectRecordsByDuration(float a,float b){
+    int *ret =(int*)malloc(sizeof(int));
+    *ret = 0;
+    for (int i = 0;i<recordsArray.size;i++) {
+        //满足条件，记录索引
+        if (recordsArray.records[i].duration>=a &&recordsArray.records[i].duration<=b) {
+            ret[0]++;
+            //重新分配内存
+            ret = (int *) realloc(ret, ret[0] + 1);
+            if (ret == NULL) {
+                printf("SelectRecordsByDate中内存申请失败");
+                return ret;
+            }
+            ret[ret[0]] = i;//存储满足条件的记录在recordsArray中的索引
+        }
+    }
+    return ret;
+}
 
 void ShowRecords(const int *ret){
     if (ret[0]==0) {

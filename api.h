@@ -19,6 +19,11 @@ void ShowMenu();
 //函数返回值：一个数组ret(int *)，ret[0]记录结果个数,ret[1]开始记录recordsArray.records中复合条件的索引(用后记得free)
 int* SelectRecordsByDate(DATE*a,DATE*b);
 
+//按时长区间查找对应记录
+//函数参数: 最低时长a 最高时长b
+//函数返回值：一个数组ret(int *)，ret[0]记录结果个数,ret[1]开始记录recordsArray.records中复合条件的索引(用后记得free)
+int* SelectRecordsByDuration(float a,float b);
+
 
 //展示查找到的记录
 void ShowRecords(const int *ret);
