@@ -36,3 +36,11 @@ void SortRecordsArrayByDate();
 
 //添加记录
 void AddRecordToArray(RECORD *rcd);
+
+
+//按日期删除记录
+//函数参数：待删除记录的日期 的指针
+//函数返回值：
+//1 当天有记录并删除成功
+//0 当天无记录
+int DeleteRecordByDate(DATE *d);

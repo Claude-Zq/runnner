@@ -8,7 +8,6 @@
 #include <stdlib.h>
 
 
-//将文件中的记录导入到recordsArray中
 void InitRecordsArray(){
     //初始化化recordsArray
     recordsArray.records = malloc(INITIALCAP*sizeof(RECORD));
@@ -36,7 +35,6 @@ void InitRecordsArray(){
     fclose(fp);
 }
 
-//将recordsArray中的信息保存到文件中 没有free recordsArray的空间
 int SaveRecordsArray(){
     //打开文件
     FILE *fp;
@@ -57,11 +55,6 @@ int SaveRecordsArray(){
 
 }
 
-
-
-//将recordsArray容量扩为两倍
-//扩容成功: 1
-//扩容失败: 0
 int DoubleArrayCap(){
     //开辟新的内存空间
     RECORD* newRecords =(RECORD*) realloc(recordsArray.records,recordsArray.cap*2*sizeof(RECORD)); //realloc会自动free原来的空间
@@ -74,8 +67,6 @@ int DoubleArrayCap(){
     return 1;
 }
 
-
-//按距离对记录排序(升序)
 void SortRecordsArrayByDistance(){
     for(int i = 0;i<recordsArray.size-1;i++){
         int minIndex = i;
@@ -92,8 +83,6 @@ void SortRecordsArrayByDistance(){
     }
 }
 
-
-//按时间对记录排序(升序)
 void SortRecordsArrayByDate(){
     for(int i = 0;i<recordsArray.size-1;i++){
         int minIndex = i;
@@ -110,8 +99,6 @@ void SortRecordsArrayByDate(){
     }
 }
 
-
-//添加记录
 void AddRecordToArray(RECORD *rcd){
     //recordsArray满了，扩容
     if (recordsArray.size == recordsArray.cap) DoubleArrayCap();
@@ -119,4 +106,33 @@ void AddRecordToArray(RECORD *rcd){
     recordsArray.records[recordsArray.size] = *rcd;
     recordsArray.size++;
 
+}
+
+int DeleteRecordByDate(DATE *date){
+    //查找记录在recordsArray中索引
+    int index = -1;
+    for(int i = 0;i<recordsArray.size;i++){
+        if(DateCmp(&recordsArray.records[i].date,date)==0) {
+            index = i;
+            break;
+        }
+    }
+    //没有该日期对应的记录
+    if (index == -1) return 0;
+
+    //删除指定记录(覆盖法）
+
+    //刚好是最后一个
+    if(index==recordsArray.size-1){
+        recordsArray.size -= 1; //逻辑上的删除
+    }
+    else{
+        for(int i = index+1;i< recordsArray.size;i++){
+            recordsArray.records[i-1] = recordsArray.records[i];
+        }
+    }
+
+    //将删除后的记录保存到文件中
+    SaveRecordsArray();
+    return 1;
 }

@@ -91,9 +91,18 @@ int main() {
            recordsArray.records[recordsArray.size-1].distance,
            recordsArray.records[recordsArray.size-1].category);*/
 
-  AddRecord();
+  /*AddRecord();*/
 
+  DATE d1 = {
+          2022,
+          3,
+          9};
 
-
+    if (DeleteRecordByDate(&d1)==1){
+        printf("删除成功");
+    }
+    else{
+        printf("删除失败");
+    }
     return 0;
 }
