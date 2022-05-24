@@ -484,5 +484,5 @@ void AddRecord(){
 
     AddRecordToArray(&newR);
     SaveRecordsArray();
-    printf("添加成功！");
+    printf("添加成功！\n");
 }

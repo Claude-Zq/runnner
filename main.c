@@ -22,7 +22,10 @@ int main() {
                 printf("欢迎下次使用\n");
                 return 0;
             case 1://添加记录
-                printf("添加记录");
+                AddRecord();
+                printf("按任意键继续");
+                getchar();
+                system("clear");
                 break;
             case 2://删除记录
                 printf("删除记录");
