@@ -436,3 +436,53 @@ void ShowWeeklyMileageComposition(){
         printf("\n");
     }
 }
+
+
+
+//添加记录
+void AddRecord(){
+    RECORD newR;
+
+    //输入日期
+    printf("请输入日期(yyyy/mm/dd):");
+    int ignore;
+    while(1) {
+
+        while (scanf("%d/%hd/%hd", &newR.date.year, &newR.date.month, &newR.date.day) != 3) {
+            printf("日期格式有误，请重新输入:");
+            while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
+        }
+        //输入日期合法时，才跳出循环
+        if (IsLegalDate(&newR.date)) break;
+        printf("输入日期不合法，请重新输入:");
+    }
+    while ((ignore = getchar()) != '\n');//清空输入缓冲区
+
+    //输入时长
+    printf("请输入时长(单位:h):");
+    while (scanf("%f", &newR.duration) != 1) {
+        printf("输入有误，请重新输入:");
+        while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
+    }
+    while ((ignore = getchar()) != '\n');//清空输入缓冲区
+
+    //输入距离
+    printf("请输入距离(单位:km):");
+    while (scanf("%f", &newR.distance) != 1) {
+        printf("输入有误，请重新输入:");
+        while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
+    }
+    while ((ignore = getchar()) != '\n');//清空输入缓冲区
+
+    //输入类别
+    printf("请输入类别:\n1.EasyRunning\n2.LongSlowDistance\n3.MarathonPaceRunning\n4.ThresholdRunning\n5.IntervalTraining\n");
+    while (scanf("%d", &newR.category) != 1) {
+        printf("输入有误，请重新输入:");
+        while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
+    }
+    while ((ignore = getchar()) != '\n');//清空输入缓冲区
+
+    AddRecordToArray(&newR);
+    SaveRecordsArray();
+    printf("添加成功！");
+}

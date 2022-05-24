@@ -72,7 +72,28 @@ int main() {
 
     /*ShowAllRecords(1);*/
 
-    ShowWeeklyMileageComposition();
+   /* ShowWeeklyMileageComposition();*/
+
+   //对添加记录功能的测试
+  /* RECORD  r = {
+           {2024,10,10},
+           3,
+           66,
+           2,
+   };
+
+    AddRecordToArray(&r);
+    printf("%04d-%02d-%02d\t%4.2f\t%4.2f\t%d\n",
+           recordsArray.records[recordsArray.size-1].date.year,
+           recordsArray.records[recordsArray.size-1].date.month,
+           recordsArray.records[recordsArray.size-1].date.day,
+           recordsArray.records[recordsArray.size-1].duration,
+           recordsArray.records[recordsArray.size-1].distance,
+           recordsArray.records[recordsArray.size-1].category);*/
+
+  AddRecord();
+
+
 
     return 0;
 }
