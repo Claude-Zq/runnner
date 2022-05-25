@@ -64,3 +64,7 @@ void ShowWeeklyMileageComposition();
 
 //添加记录
 void AddRecord();
+
+
+//删除记录
+void DeleteRecord();

@@ -439,7 +439,7 @@ void ShowWeeklyMileageComposition(){
 
 
 
-//添加记录
+
 void AddRecord(){
     RECORD newR;
 
@@ -485,4 +485,27 @@ void AddRecord(){
     AddRecordToArray(&newR);
     SaveRecordsArray();
     printf("添加成功！\n");
+}
+
+
+
+void DeleteRecord(){
+    DATE date;
+    //输入日期
+    printf("请输入待删除记录的日期(yyyy/mm/dd):");
+    int ignore;
+    while(1) {
+
+        while (scanf("%d/%hd/%hd", &date.year, &date.month, &date.day) != 3) {
+            printf("日期格式有误，请重新输入:");
+            while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
+        }
+        //输入日期合法时，才跳出循环
+        if (IsLegalDate(&date)) break;
+        printf("输入日期不合法，请重新输入:");
+    }
+    while ((ignore = getchar()) != '\n');//清空输入缓冲区
+
+    if (DeleteRecordByDate(&date)==1) printf("删除成功！\n");
+    else printf("当天无跑步记录\n");
 }

@@ -28,7 +28,10 @@ int main() {
                 system("clear");
                 break;
             case 2://删除记录
-                printf("删除记录");
+                DeleteRecord();
+                printf("按任意键继续");
+                getchar();
+                system("clear");
                 break;
             case 3:
                 SelectRecords();
