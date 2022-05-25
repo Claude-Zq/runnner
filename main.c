@@ -3,7 +3,6 @@
 #include "api.h"
 
 int main() {
-
     InitRecordsArray(); //将文件中的数据加载到内存中
     while (1){
         ShowMenu();

@@ -24,7 +24,7 @@ int IsLeap(int year);
 //获取指定月份的天数,出错返回0
 int GetDays(int year,int month);
 
-//以0000-00-00时为基准,将日期转换为天数
+//以0000-00-03为基准,将日期转换为天数(返回值%7+1即为星期数)
 int DateToDays(DATE *d);
 
 //判断两个日期的是否在同一个礼拜
