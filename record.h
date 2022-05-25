@@ -4,7 +4,7 @@
 
 #pragma once
 #include "date.h"
-#define NUMOFCATE 5
+#define NUMOFCATE 5 //跑步分类的数量
 
 typedef enum cate{
     EasyRunning = 1,LongSlowDistance,MarathonPaceRunning,ThresholdRunning,IntervalTraining
