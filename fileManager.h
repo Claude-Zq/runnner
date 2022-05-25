@@ -20,10 +20,12 @@ struct recordsA{
 void InitRecordsArray();
 
 
-//将recordsArray中的信息保存到文件中
+//将recordsArray中的信息保存到文件中(没有释放recordsArray，所以可以继续用)
 int SaveRecordsArray();
 
 //将recordsArray容量扩为两倍
+//成功：1
+//失败：0
 int DoubleArrayCap();
 
 
