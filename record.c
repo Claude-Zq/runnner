@@ -3,7 +3,7 @@
 //
 #include "record.h"
 
-/*缩影为分类编号 值为对应的字符串
+/*索引为分类编号 值为对应的字符串
 1 - EasyRunning
 2 - LongSlowDistance
 3 - MarathonPaceRunning
