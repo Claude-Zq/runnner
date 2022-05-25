@@ -17,7 +17,6 @@ void ShowMenu(){
     printf("***************************************************\n");
 }
 
-
 int* SelectRecordsByDate(DATE*a,DATE*b){
     int *ret =(int*)malloc(sizeof(int));
     *ret = 0;
@@ -36,7 +35,6 @@ int* SelectRecordsByDate(DATE*a,DATE*b){
     }
     return ret;
 }
-
 
 int* SelectRecordsByDuration(float a,float b){
     int *ret =(int*)malloc(sizeof(int));
@@ -57,7 +55,6 @@ int* SelectRecordsByDuration(float a,float b){
     return ret;
 }
 
-
 int* SelectRecordsByDistance(float a,float b){
     int *ret =(int*)malloc(sizeof(int));
     *ret = 0;
@@ -77,7 +74,6 @@ int* SelectRecordsByDistance(float a,float b){
     return ret;
 }
 
-
 int* SelectRecordsByCate(int cateID){
     int *ret =(int*)malloc(sizeof(int));
     *ret = 0;
@@ -96,7 +92,6 @@ int* SelectRecordsByCate(int cateID){
     }
     return ret;
 }
-
 
 void ShowRecords(const int *ret){
     if (ret[0]==0) {
@@ -118,7 +113,6 @@ void ShowRecords(const int *ret){
     }
     free(ret);//释放堆区开辟的内存
 }
-
 
 void SelectRecords() {
     printf("1.按日期查找\n2.按时长查找\n3.按距离查找\n4.按分类查找\n0.返回上一级\n请输入您的选择:");
@@ -243,7 +237,6 @@ void SelectRecords() {
     ShowRecords(ret);
 }
 
-
 void ShowAnnualMileage(){
     //记录为空
     if (recordsArray.size == 0){
@@ -278,7 +271,6 @@ void ShowAnnualMileage(){
 
 }
 
-
 void ShowMonthlyMileage(){
     //记录为空
     if (recordsArray.size == 0){
@@ -312,7 +304,6 @@ void ShowMonthlyMileage(){
     }
 
 }
-
 
 void ShowWeeklyMileage(){
     //记录为空
@@ -350,27 +341,25 @@ void ShowWeeklyMileage(){
 
 }
 
-
-//按距离顺序输出所有跑步记录
 void ShowAllRecords(int isReverse){
     if (recordsArray.size == 0){
         printf("无任何记录！\n");
         return;
     }
 
-    printf("       ===查询结果如下===\n");
-    printf("   %s    \t %s \t%s\t   %s\n","日期","时长","距离","类别");
+    printf("         ===查询结果如下===\n");
+    printf("    日期     时长     距离        类别\n");
     //将记录升序排列
     SortRecordsArrayByDistance();
     if (isReverse == 1){
         for (int i = recordsArray.size-1;i>=0;i--){
-            printf("%04d-%02d-%02d\t%4.2f\t%4.2f\t%d\n",
+            printf("%04d-%02d-%02d\t%4.2f\t%4.2f\t%s\n",
                    recordsArray.records[i].date.year,
                    recordsArray.records[i].date.month,
                    recordsArray.records[i].date.day,
                    recordsArray.records[i].duration,
                    recordsArray.records[i].distance,
-                   recordsArray.records[i].category);
+                   cateIdToString[recordsArray.records[i].category]);
         }
     }
     else{
@@ -387,8 +376,6 @@ void ShowAllRecords(int isReverse){
 
 }
 
-
-//展示周跑量的组成
 void ShowWeeklyMileageComposition(){
     //记录为空
     if (recordsArray.size == 0){
@@ -438,8 +425,51 @@ void ShowWeeklyMileageComposition(){
     }
 }
 
+void  AnalyzeRecord(){
+    printf("1.展示周跑量\n2.展示月跑量\n3.展示年跑量\n4.展示各类跑步占比\n5.按距离有序展示记录\n0.返回上一级\n请输入您的选择：");
+    int select,ignore;
+    while (scanf("%d",&select)!= 1){
+        printf("输入错误请重新输入:");
+        while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
+    }
+    while ((ignore = getchar()) != '\n');//清空输入缓冲区
 
+    switch (select)
+    {
+        case 0://返回上一级
+            printf("已返回\n");
+            return;
+        case 1://展示周跑量
+            ShowWeeklyMileage();
+            break;
+        case 2://展示月跑量
+            ShowMonthlyMileage();
+            break;
+        case 3://展示年跑量
+            ShowAnnualMileage();
+            break;
+        case 4://展示各类跑步占比
+            ShowWeeklyMileageComposition();
+            break;
+        case 5:
+        {
+            char choice;
+            printf("是否降序输出(y/n)");
+            while (scanf("%c",&choice)!= 1){
+                printf("输入错误请重新输入:");
+                while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
+            }
+            while ((ignore = getchar()) != '\n');//清空输入缓冲区
+            if (choice == 'y')ShowAllRecords(1);
+            else ShowAllRecords(0);
+            break;
+        }
+        default:
+            printf("无该选项！");
+            return;
+    }
 
+}
 
 void AddRecord(){
     RECORD newR;

@@ -62,6 +62,9 @@ void ShowAllRecords(int isReverse);
 //展示周跑量的组成
 void ShowWeeklyMileageComposition();
 
+//分析记录
+void  AnalyzeRecord();
+
 //添加记录
 void AddRecord();
 

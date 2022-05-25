@@ -40,7 +40,10 @@ int main() {
                 system("clear");
                 break;
             case 4:
-                printf("分析记录");
+                AnalyzeRecord();
+                printf("按任意键继续");
+                getchar();
+                system("clear");
                 break;
 
             default:
