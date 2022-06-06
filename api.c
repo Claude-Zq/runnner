@@ -99,10 +99,12 @@ void ShowRecords(const int *ret){
         return;
     }
     else{
-        printf("\t\t===查询结果如下===\n");
-        printf("    日期     时长(min)     距离(km)     类别\n");
+        printf("===========================================\n");
+        printf("============== 查询结果如下 =================\n");
+        printf("===========================================\n");
+        printf("    日期       时长(min)      距离(km)     类别\n");
         for (int i = 1;i<=ret[0];i++){
-            printf("%04d-%02d-%02d \t%4.2f\t%4.2f\t%s\n",
+            printf("%04d-%02d-%02d     %6.2f      %6.2f    %s\n",
                    recordsArray.records[ret[i]].date.year,
                    recordsArray.records[ret[i]].date.month,
                    recordsArray.records[ret[i]].date.day,
