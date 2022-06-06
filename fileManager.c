@@ -15,7 +15,10 @@ void InitRecordsArray(){
 
     //打开文件
     FILE *fp;
-    if  ((fp=fopen(FILEName,"r")) == NULL){
+    if  ((fp=fopen(FILENAME,"r")) == NULL){
+        system("pwd");
+        system("ls");
+        printf("%s",FILENAME);
         printf("文件打开失败");
         exit(1);
     }
@@ -35,10 +38,10 @@ void InitRecordsArray(){
     fclose(fp);
 }
 
-int SaveRecordsArray(){
+void SaveRecordsArray(){
     //打开文件
     FILE *fp;
-    if  ((fp=fopen(FILEName,"w")) == NULL){
+    if  ((fp=fopen(FILENAME,"w")) == NULL){
         printf("文件打开失败");
         exit(1);
     }

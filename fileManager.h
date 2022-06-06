@@ -6,7 +6,7 @@
 #include "record.h"
 #define MAXLENGTH 100 //每行数据的最大长度
 #define INITIALCAP 8 //recordsArray的初始容量
-#define FILEName "../records.txt"
+#define FILENAME "/Users/zhouqing/Documents/devFile/c:c++/runner-v2/records.txt"
 
 
 struct recordsA{
@@ -22,7 +22,7 @@ void InitRecordsArray();
 
 
 //将recordsArray中的信息保存到文件中(没有释放recordsArray，所以可以继续用)
-int SaveRecordsArray();
+void SaveRecordsArray();
 
 //将recordsArray容量扩为两倍
 //成功：1
