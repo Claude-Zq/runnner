@@ -15,7 +15,7 @@ void InitRecordsArray(){
 
     //打开文件
     FILE *fp;
-    if  ((fp=fopen("../records.txt","r")) == NULL){
+    if  ((fp=fopen(FILEName,"r")) == NULL){
         printf("文件打开失败");
         exit(1);
     }
@@ -38,7 +38,7 @@ void InitRecordsArray(){
 int SaveRecordsArray(){
     //打开文件
     FILE *fp;
-    if  ((fp=fopen("../records.txt","w")) == NULL){
+    if  ((fp=fopen(FILEName,"w")) == NULL){
         printf("文件打开失败");
         exit(1);
     }
@@ -128,6 +128,7 @@ int DeleteRecordByDate(DATE *date){
     else{
         for(int i = index+1;i< recordsArray.size;i++){
             recordsArray.records[i-1] = recordsArray.records[i];
+            recordsArray.size -= 1;
         }
     }
 

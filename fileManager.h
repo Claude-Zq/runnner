@@ -6,6 +6,7 @@
 #include "record.h"
 #define MAXLENGTH 100 //每行数据的最大长度
 #define INITIALCAP 8 //recordsArray的初始容量
+#define FILEName "../records.txt"
 
 
 struct recordsA{

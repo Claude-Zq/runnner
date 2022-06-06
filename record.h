@@ -12,7 +12,7 @@ typedef enum cate{
 
 typedef struct record{
     DATE date; //年月日
-    float duration;//单位(h)
+    float duration;//单位(min)
     float distance;//单位(km)
     CATE category;//类别
 }RECORD;

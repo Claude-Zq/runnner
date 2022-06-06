@@ -100,7 +100,7 @@ void ShowRecords(const int *ret){
     }
     else{
         printf("\t\t===查询结果如下===\n");
-        printf("    日期     时长     距离       类别\n");
+        printf("    日期     时长(min)     距离(km)     类别\n");
         for (int i = 1;i<=ret[0];i++){
             printf("%04d-%02d-%02d \t%4.2f\t%4.2f\t%s\n",
                    recordsArray.records[ret[i]].date.year,
@@ -165,14 +165,14 @@ void SelectRecords() {
         case 2://按时长查找
         {
             float minT,maxT;
-            printf("请输入最短时长(单位:h):");
+            printf("请输入最短时长(单位:min):");
             while (scanf("%f", &minT) != 1) {
                 printf("输入有误，请重新输入:");
                 while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
             }
             while ((ignore = getchar()) != '\n');//清空输入缓冲区
 
-            printf("请输入最长时长(单位:h):");
+            printf("请输入最长时长(单位:min):");
             while (scanf("%f", &maxT) != 1) {
                 printf("输入有误，请重新输入:");
                 while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
@@ -348,7 +348,7 @@ void ShowAllRecords(int isReverse){
     }
 
     printf("         ===查询结果如下===\n");
-    printf("    日期     时长     距离        类别\n");
+    printf("    日期     时长(min)     距离(km)      类别\n");
     //将记录升序排列
     SortRecordsArrayByDistance();
     if (isReverse == 1){
@@ -490,7 +490,7 @@ void AddRecord(){
     while ((ignore = getchar()) != '\n');//清空输入缓冲区
 
     //输入时长
-    printf("请输入时长(单位:h):");
+    printf("请输入时长(单位:min):");
     while (scanf("%f", &newR.duration) != 1) {
         printf("输入有误，请重新输入:");
         while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
