@@ -128,8 +128,8 @@ int DeleteRecordByDate(DATE *date){
     else{
         for(int i = index+1;i< recordsArray.size;i++){
             recordsArray.records[i-1] = recordsArray.records[i];
-            recordsArray.size -= 1;
         }
+        recordsArray.size -= 1;
     }
 
     //将删除后的记录保存到文件中
