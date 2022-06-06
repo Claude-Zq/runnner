@@ -349,13 +349,15 @@ void ShowAllRecords(int isReverse){
         return;
     }
 
-    printf("         ===查询结果如下===\n");
-    printf("    日期     时长(min)     距离(km)      类别\n");
+    printf("    ===========================================\n");
+    printf("    ============== 查询结果如下 =================\n");
+    printf("    ===========================================\n");
+    printf("    日期       时长(min)     距离(km)        类别\n");
     //将记录升序排列
     SortRecordsArrayByDistance();
     if (isReverse == 1){
         for (int i = recordsArray.size-1;i>=0;i--){
-            printf("%04d-%02d-%02d\t%4.2f\t%4.2f\t%s\n",
+            printf("%04d-%02d-%02d    %6.2f       %6.2f      %s\n",
                    recordsArray.records[i].date.year,
                    recordsArray.records[i].date.month,
                    recordsArray.records[i].date.day,
@@ -366,7 +368,7 @@ void ShowAllRecords(int isReverse){
     }
     else{
         for (int i = 0;i<recordsArray.size;i++){
-            printf("%04d-%02d-%02d\t%4.2f\t%4.2f\t%d\n",
+            printf("%04d-%02d-%02d    %6.2f       %6.2f      %s\n",
                    recordsArray.records[i].date.year,
                    recordsArray.records[i].date.month,
                    recordsArray.records[i].date.day,
