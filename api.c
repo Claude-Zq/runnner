@@ -113,7 +113,7 @@ void ShowRecords(const int *ret){
                    cateIdToString[recordsArray.records[ret[i]].category]);
         }
     }
-    free(ret);//释放堆区开辟的内存
+    free((void *)ret);//释放堆区开辟的内存
 }
 
 void SelectRecords() {
@@ -374,7 +374,7 @@ void ShowAllRecords(int isReverse){
                    recordsArray.records[i].date.day,
                    recordsArray.records[i].duration,
                    recordsArray.records[i].distance,
-                   recordsArray.records[i].category);
+                   cateIdToString[recordsArray.records[i].category]);
         }
     }
 
