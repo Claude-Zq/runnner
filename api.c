@@ -25,7 +25,7 @@ int* SelectRecordsByDate(DATE*a,DATE*b){
         if (DateCmp(a, &recordsArray.records[i].date) >= 0 && DateCmp(&recordsArray.records[i].date, b) >= 0) {
             ret[0]++;
             //重新分配内存
-            ret = (int *) realloc(ret, ret[0] + 1);
+            ret = (int *) realloc(ret, sizeof(ret[0] + 1));
             if (ret == NULL) {
                 printf("SelectRecordsByDate中内存申请失败");
                 return ret;
@@ -44,7 +44,7 @@ int* SelectRecordsByDuration(float a,float b){
         if (recordsArray.records[i].duration>=a &&recordsArray.records[i].duration<=b) {
             ret[0]++;
             //重新分配内存
-            ret = (int *) realloc(ret, ret[0] + 1);
+            ret = (int *) realloc(ret, sizeof(ret[0] + 1));
             if (ret == NULL) {
                 printf("SelectRecordsByDate中内存申请失败");
                 return ret;
@@ -63,7 +63,7 @@ int* SelectRecordsByDistance(float a,float b){
         if (recordsArray.records[i].distance>=a &&recordsArray.records[i].distance<=b) {
             ret[0]++;
             //重新分配内存
-            ret = (int *) realloc(ret, ret[0] + 1);
+            ret = (int *) realloc(ret, sizeof(ret[0] + 1));
             if (ret == NULL) {
                 printf("SelectRecordsByDate中内存申请失败");
                 return ret;
@@ -82,7 +82,7 @@ int* SelectRecordsByCate(int cateID){
         if (cateID == recordsArray.records[i].category) {
             ret[0]++;
             //重新分配内存
-            ret = (int *) realloc(ret, ret[0] + 1);
+            ret = (int *) realloc(ret, sizeof(ret[0] + 1));
             if (ret == NULL) {
                 printf("SelectRecordsByDate中内存申请失败");
                 return ret;
