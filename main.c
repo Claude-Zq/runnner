@@ -27,6 +27,7 @@ int main() {
                 printf("欢迎下次使用!\n");
                 getchar();
                 system("cmatrix");
+                system("clear");
                 return 0;
             case 1://添加记录
                 AddRecord();
