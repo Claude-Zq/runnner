@@ -3,6 +3,11 @@
 #include "api.h"
 
 int main() {
+    //显示logo
+    //system("fortune| cowsay");
+    system("toilet -f mono12 -F gay runner");
+    getchar();
+
     InitRecordsArray(); //将文件中的数据加载到内存中
     while (1){
         system("clear");
@@ -20,7 +25,8 @@ int main() {
         {
             case 0://退出程序
                 printf("欢迎下次使用!\n");
-                system("sl");
+                getchar();
+                system("cmatrix");
                 return 0;
             case 1://添加记录
                 AddRecord();
