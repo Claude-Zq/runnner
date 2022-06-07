@@ -101,6 +101,22 @@ void SortRecordsArrayByDate(){
     }
 }
 
+
+int IsRecorded(DATE *d){
+    //对记录按日期排序
+    SortRecordsArrayByDate();
+    int low = 0,high = recordsArray.size-1;
+    while(low <= high){
+        int middle = (low + high)/2;
+        switch (DateCmp(&recordsArray.records[middle].date,d)) {
+            case 0: return 1; //当前日期已被记录
+            case 1: low = middle +1; break; //中间日期比目标日期小
+            case -1: high = middle -1; break; //中间日期比目标日期大
+        }
+    }
+    return 0; //当天没有记录
+}
+
 void AddRecordToArray(RECORD *rcd){
     //recordsArray满了，扩容
     if (recordsArray.size == recordsArray.cap)

@@ -36,6 +36,11 @@ void SortRecordsArrayByDistance();
 //按时间对记录排序(升序)
 void SortRecordsArrayByDate();
 
+//判断当天是否已有记录（使用二分查找）
+//已经记录：1
+//没有记录：0
+int IsRecorded(DATE *d);
+
 
 //添加记录
 void AddRecordToArray(RECORD *rcd);
