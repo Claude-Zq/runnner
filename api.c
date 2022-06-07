@@ -258,7 +258,7 @@ void ShowAnnualMileage(){
         else{
             //输出旧年的跑量
             printf("%04d年:",LastDate.year);
-            for(int j = (int)(0.5*(sumOfMileage+0.5));j>0;j--) printf("#"); //输出进度条
+            for(int j = (int)(ADJUSTOFANNUALMILEAGE*(0.5*(sumOfMileage+0.5)));j>0;j--) printf("#"); //输出进度条
             printf(" %.2fkm\n",sumOfMileage );
             sumOfMileage  = recordsArray.records[i].distance;//开始计算新一年的跑量
         }
@@ -267,7 +267,7 @@ void ShowAnnualMileage(){
     //最后一年没有输出
     if(fabsf(sumOfMileage-0)>EPS){
         printf("%04d年:",LastDate.year);
-        for(int j = (int)(0.5*(sumOfMileage+0.5));j>0;j--) printf("#"); //输出进度条
+        for(int j = (int)(ADJUSTOFANNUALMILEAGE*(0.5*(sumOfMileage+0.5)));j>0;j--) printf("#"); //输出进度条
         printf(" %.2fkm\n",sumOfMileage );
     }
 
@@ -292,7 +292,7 @@ void ShowMonthlyMileage(){
         else{
             //输出旧月的跑量
             printf("%04d-%02d:",LastDate.year,LastDate.month);
-            for(int j = (int)(sumOfMileage+0.5);j>0;j--) printf("#"); //输出进度条
+            for(int j = (int)(ADJUSTOFMONTHLYMILEAGE*(sumOfMileage+0.5));j>0;j--) printf("#"); //输出进度条
             printf(" %.2fkm\n",sumOfMileage );
             sumOfMileage  = recordsArray.records[i].distance;//开始计算新月的跑量
         }
@@ -301,7 +301,7 @@ void ShowMonthlyMileage(){
     //最后一月没有输出
     if(fabsf(sumOfMileage-0)>EPS){
         printf("%04d-%02d:",LastDate.year,LastDate.month);
-        for(int j = (int)(sumOfMileage+0.5);j>0;j--) printf("#"); //输出进度条
+        for(int j = (int)(ADJUSTOFMONTHLYMILEAGE*(sumOfMileage+0.5));j>0;j--) printf("#"); //输出进度条
         printf(" %.2fkm\n",sumOfMileage );
     }
 
@@ -325,18 +325,18 @@ void ShowWeeklyMileage(){
         }
             //和上一个日期不同周
         else{
-            //输出旧月的跑量
+            //输出旧周的跑量
             printf("%03d周:",weekId++);
-            for(int j = 3*(int)(sumOfMileage+0.5);j>0;j--) printf("#"); //输出进度条
+            for(int j = ADJUSTOFWEEKLYMILEAGE*(int)(sumOfMileage+0.5);j>0;j--) printf("#"); //输出进度条
             printf(" %.2fkm\n",sumOfMileage );
-            sumOfMileage  = recordsArray.records[i].distance;//开始计算新月的跑量
+            sumOfMileage  = recordsArray.records[i].distance;//开始计算新周的跑量
         }
         LastDate = recordsArray.records[i].date;
     }
     //最后一周没有输出
     if(fabsf(sumOfMileage-0)>EPS){
         printf("%03d周:",weekId);
-        for(int j = (int)(sumOfMileage+0.5);j>0;j--) printf("#"); //输出进度条
+        for(int j = ADJUSTOFWEEKLYMILEAGE*(int)(sumOfMileage+0.5);j>0;j--) printf("#"); //输出进度条
         printf(" %.2fkm\n",sumOfMileage );
     }
 

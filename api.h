@@ -9,6 +9,9 @@
 #include"fileManager.h"
 #include <math.h>
 #define EPS 1e-8        //浮点误差
+#define ADJUSTOFANNUALMILEAGE  0.7 //调节展示年跑量时，条形图的长度
+#define ADJUSTOFMONTHLYMILEAGE 1  //调节展示月跑量时，条形图的长度
+#define ADJUSTOFWEEKLYMILEAGE  2   //调节展示周跑量时，条形图的长度
 
 extern const char* cateIdToString[]; //用到record.c中定义的全局变量，必须重新声明一遍
 
