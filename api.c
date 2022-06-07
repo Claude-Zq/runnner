@@ -493,6 +493,18 @@ void AddRecord(){
     }
     while ((ignore = getchar()) != '\n');//清空输入缓冲区
 
+    //判断当天是否有记录
+    if(IsRecorded(&newR.date)){
+        char choice;
+        printf("当天已有记录,继续操作将会覆盖原有记录,是否继续(y/n)?:");
+        while (scanf("%c",&choice)!= 1){
+            printf("输入错误请重新输入:");
+            while ((ignore = getchar()) != '\n');//清空输入缓冲区用scanf(“%*[^\n]%*c”)会遗留回车符
+        }
+        while ((ignore = getchar()) != '\n');//清空输入缓冲区
+        if(choice !=  'y') return;
+    }
+
     //输入时长
     printf("请输入时长(单位:min):");
     while (scanf("%f", &newR.duration) != 1) {
