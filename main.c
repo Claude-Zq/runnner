@@ -5,6 +5,7 @@
 int main() {
     InitRecordsArray(); //将文件中的数据加载到内存中
     while (1){
+        system("clear");
         ShowMenu();//展示菜单
         printf("请输入您的选择:");
 
@@ -18,37 +19,34 @@ int main() {
         switch (select)
         {
             case 0://退出程序
-                printf("欢迎下次使用\n");
+                printf("欢迎下次使用!\n");
+                system("sl");
                 return 0;
             case 1://添加记录
                 AddRecord();
                 printf("按任意键继续");
                 getchar();
-                system("clear");
+
                 break;
             case 2://删除记录
                 DeleteRecord();
                 printf("按任意键继续");
                 getchar();
-                system("clear");
                 break;
             case 3://查找记录
                 SelectRecords();
                 printf("按任意键继续");
                 getchar();
-                system("clear");
                 break;
             case 4://分析记录
                 AnalyzeRecord();
                 printf("按任意键继续");
                 getchar();
-                system("clear");
                 break;
 
             default:
                 printf("无该选项！");
                 getchar();//按任意键后清屏
-                system("clear");//清屏windows用cls
                 break;
         }
 

@@ -542,5 +542,5 @@ void DeleteRecord(){
     while ((ignore = getchar()) != '\n');//清空输入缓冲区
 
     if (DeleteRecordByDate(&date)==1) printf("删除成功！\n");
-    else printf("当天无跑步记录\n");
+    else printf("当天无跑步记录！\n");
 }
