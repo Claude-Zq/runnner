@@ -4,8 +4,8 @@
 
 int main() {
     //显示logo
-    //system("fortune| cowsay");
     system("toilet -f mono12 -F gay runner");
+    system("fortune -s  love  |pv  -qL 10");
     getchar();
 
     InitRecordsArray(); //将文件中的数据加载到内存中
