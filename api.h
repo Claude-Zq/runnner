@@ -15,6 +15,9 @@
 
 extern const char* cateIdToString[]; //用到record.c中定义的全局变量，必须重新声明一遍
 
+//进入程序的页面
+void StartPage();
+
 //展示菜单
 void ShowMenu();
 

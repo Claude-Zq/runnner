@@ -3,15 +3,8 @@
 #include "api.h"
 
 int main() {
-    //清屏
-    system("clear");
-    //显示logo
-    system("toilet -f mono12 -F gay runner");
-    //打字效果输出名言警句
-    system("fortune -s  love  |pv  -qL 10");
-    //按任意键继续
-    getchar();
 
+    StartPage();
     InitRecordsArray(); //将文件中的数据加载到内存中
     while (1){
         system("clear");

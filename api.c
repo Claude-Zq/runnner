@@ -4,6 +4,19 @@
 
 #include "api.h"
 
+
+
+void StartPage(){
+    //清屏
+    system("clear");
+    //显示logo
+    system("toilet -f mono12 -F gay runner");
+    //打字效果输出名言警句
+    system("fortune -s  love  |pv  -qL 10");
+    //按任意键继续
+    getchar();
+}
+
 void ShowMenu(){
     printf("***************************************************\n");
     printf("***************************************************\n");
